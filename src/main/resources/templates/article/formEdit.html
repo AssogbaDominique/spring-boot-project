@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <h2>Formulaire de mise a jour  d'un article.</h2>
+    <form th:action="@{/article/update}" th:object="${Un_article}" method="post">
+
+        <div class="Form-group">
+            <input type="hidden" th:field="*{id}" class="Form-control">
+            <inp ut type="hidden" th:field="*{dateCreation}" class="Form-control">
+            <input type="hidden" th:field="*{qteStock}" class="Form-control">
+            <input type="hidden" th:field="*{etat}" class="Form-control">
+
+        </div>
+
+        <div class="Form-group">
+            <label>Designation</label>
+            <select name="categorie_id" required>
+                <option value="">...Sélectionnez une catégorie...</option>
+                <option th:each="cat:${listeCategorie}"
+                        th:value="${cat.id}"
+                        th:utext="${cat.designation}">
+                </option>
+            </select>
+        </div>
+        <div class="Form-group">
+            <label>Libelle</label>
+            <input type="text" th:field="*{libelle}" class="Form-control">
+        </div>
+        <div class="Form-group">
+            <label>Prix</label>
+            <input type="number" th:field="*{prix}" class="Form-control">
+        </div>
+        <div class="Form-group">
+            <label>Qte seuil</label>
+            <input type="number" th:field="*{qteSeuil}" class="Form-control">
+        </div>
+
+        <button type="submit">Enregistrer</button>
+    </form>
+</div>
+<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>

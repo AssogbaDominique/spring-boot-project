@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <h2>Formulaire de mise a jour  d'un approvisionnement</h2>
+    <form th:action="@{/appro/save}" th:object="${Un_appro}" method="post">
+
+        <div class="Form-group">
+           <input type="hidden" th:field="*{id}" class="Form-control">
+            <input type="hidden" th:field="*{dateCreation}" class="Form-control">
+        </div>
+        <div class="Form-group">
+            <label>Designation</label>
+            <select name="article_id" required>
+                <option value="">...Sélectionnez un article a approvisionner</option>
+                <option th:each="article:${listeArticle}"
+                        th:value="${article.id}"
+                        th:utext="${article.libelle}">
+                </option>
+            </select>
+        </div>
+        <div class="Form-group">
+            <label>Qte approvisionnement</label>
+            <input type="number" th:text="*{qteapprovisionnement}" class="Form-control">
+        </div>
+
+        <button type="submit">Enregistrer</button>
+    </form>
+</div>
+<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>
